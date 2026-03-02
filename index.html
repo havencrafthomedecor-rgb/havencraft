@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HavenCraft | Luxury Handmade Brand</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="header">
+
+  <div class="logo">
+  <img src="logo.png.png" alt="HavenCraft ">
+  <span>HavenCraft</span>
+  </div>
+
+  <nav class="nav">
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="cart.html" class="cart-btn">
+        Cart (<span id="cart-count">0</span>)
+      </a></li>
+    </ul>
+  </nav>
+
+</header>
+
+
+<!-- ================= HERO SECTION ================= -->
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>
+      Crafted With Love <br>
+      <span>Designed For Elegance</span>
+    </h1>
+
+    <p>
+      Discover timeless handmade creations that transform your home into a haven.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#" class="btn-primary">Shop Now</a>
+      <a href="#" class="btn-secondary">Our Story</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================= FEATURE SECTION ================= -->
+
+<section class="features">
+
+  <div class="feature-box">
+    <h3>Premium Quality</h3>
+    <p>Every product is crafted using high quality materials.</p>
+  </div>
+
+  <div class="feature-box">
+    <h3>Handmade With Care</h3>
+    <p>Each item is uniquely designed by skilled artisans.</p>
+  </div>
+
+  <div class="feature-box">
+    <h3>Eco Friendly</h3>
+    <p>We use sustainable and environmentally friendly resources.</p>
+  </div>
+
+</section>
+
+
+<!-- ================= COLLECTIONS ================= -->
+
+<section id="collections" class="collections">
+
+  <div class="section-header">
+    <h2>Featured Collection</h2>
+    <p>Our most loved handcrafted pieces</p>
+  </div>
+
+  <div class="product-grid">
+
+    <!-- PRODUCT 1 -->
+    <div class="product-card">
+      <div class="badge">Best Seller</div>
+      <img src="https://images.unsplash.com/photo-1602524813055-7b5c0e9d4c52">
+      <h3>Handmade Candle</h3>
+      <p class="price">450৳</p>
+      <button onclick="addToCart('Handmade Candle',450)" class="btn-secondary">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- PRODUCT 2 -->
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b">
+      <h3>Craft Basket</h3>
+      <p class="price">750৳</p>
+      <button onclick="addToCart('Craft Basket',750)" class="btn-secondary">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- PRODUCT 3 -->
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30">
+      <h3>Natural Soap</h3>
+      <p class="price">350৳</p>
+      <button onclick="addToCart('Natural Soap',350)" class="btn-secondary">
+        Add to Cart
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= BRAND STORY ================= -->
+
+<section id="story" class="story">
+
+  <div class="story-left">
+    <h2>Our Story</h2>
+    <p>
+      HavenCraft began as a passion project — a dream to create handcrafted
+      pieces that inspire warmth, elegance and comfort.
+      Every product reflects dedication, love and artistry.
+    </p>
+  </div>
+
+  <div class="story-right">
+    <img src="https://images.unsplash.com/photo-1503602642458-232111445657">
+  </div>
+
+</section>
+
+
+<!-- ================= GALLERY ================= -->
+
+<section id="gallery" class="gallery">
+
+  <h2>Moments With HavenCraft</h2>
+
+  <div class="gallery-grid">
+    <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36">
+    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b">
+    <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30">
+    <img src="https://images.unsplash.com/photo-1503602642458-232111445657">
+    <img src="https://images.unsplash.com/photo-1602524813055-7b5c0e9d4c52">
+    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b">
+  </div>
+
+</section>
+
+
+<!-- ================= TESTIMONIAL ================= -->
+
+<section class="testimonial">
+
+  <h2>What Customers Say</h2>
+
+  <div class="testimonial-box">
+    <p>
+      "Absolutely stunning craftsmanship. The quality feels premium and luxurious."
+    </p>
+    <span>- Happy Client</span>
+  </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" class="contact">
+
+  <h2>Stay Connected</h2>
+
+  <p>Email: havencraft.homedecor@gmail.com</p>
+  <p>Phone: +8801943500248</p>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+  <div class="footer-content">
+    <div>
+      <h3>HavenCraft</h3>
+      <p>Luxury Handmade Brand</p>
+    </div>
+
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#collections">Shop</a></li>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 HavenCraft | All Rights Reserved
+  </div>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
