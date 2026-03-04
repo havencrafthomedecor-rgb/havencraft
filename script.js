@@ -203,7 +203,127 @@ function showNotification(text) {
    INIT
 ============================= */
 
+/* =============================
+   INIT
+============================= */
+
 document.addEventListener("DOMContentLoaded", function () {
+
     updateCartCount();
     renderCart();
+
+    const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchBtn");
+    const voiceBtn = document.getElementById("voiceBtn");
+    const cameraBtn = document.getElementById("cameraBtn");
+    const imageUpload = document.getElementById("imageUpload");
+
+    /* ===============================
+       NORMAL SEARCH (Typing)
+    ================================ */
+
+    function filterProducts() {
+
+        let filter = searchInput.value.toLowerCase();
+        let items = document.querySelectorAll(".product-card");
+
+        items.forEach(function (item) {
+
+            let text = item.textContent.toLowerCase();
+
+            if (text.includes(filter)) {
+                item.style.display = "block";
+            } else {
+                item.style.display = "none";
+            }
+
+        });
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener("keyup", filterProducts);
+    }
+
+    /* ===============================
+       SEARCH ICON CLICK
+    ================================ */
+
+    if (searchBtn) {
+        searchBtn.addEventListener("click", function () {
+            filterProducts();
+        });
+    }
+
+    /* ===============================
+       VOICE SEARCH
+    ================================ */
+
+    if (voiceBtn) {
+
+        voiceBtn.addEventListener("click", function () {
+
+            if (!('webkitSpeechRecognition' in window)) {
+                alert("Voice search not supported in this browser");
+                return;
+            }
+
+            const recognition = new webkitSpeechRecognition();
+            recognition.lang = "en-US";
+            recognition.start();
+
+            recognition.onresult = function (event) {
+
+             let transcript = event.results[0][0].transcript;
+
+             // Remove full stop, comma, question mark etc.
+             transcript = transcript.replace(/[^\w\s]/gi, "");
+
+             // Optional: remove extra spaces
+             transcript = transcript.trim();
+
+             searchInput.value = transcript;
+             filterProducts();
+
+            };
+
+        });
+
+    }
+
+    /* ===============================
+       CAMERA IMAGE SEARCH (Basic Logic)
+    ================================ */
+
+    if (cameraBtn) {
+        cameraBtn.addEventListener("click", function () {
+            imageUpload.click();
+        });
+    }
+
+    if (imageUpload) {
+        imageUpload.addEventListener("change", function () {
+
+            if (!imageUpload.files.length) return;
+
+            let fileName = imageUpload.files[0].name.toLowerCase();
+
+            if (fileName.includes("candle")) {
+                searchInput.value = "candle";
+            }
+            else if (fileName.includes("basket")) {
+                searchInput.value = "basket";
+            }
+            else if (fileName.includes("soap")) {
+                searchInput.value = "soap";
+            }
+            else {
+                alert("No matching product found");
+                return;
+            }
+
+            filterProducts();
+
+        });
+    }
+
 });
