@@ -18,11 +18,33 @@
 
 <header class="header">
 
+  <!-- Logo -->
   <div class="logo">
-  <img src="logo.png.png" alt="HavenCraft ">
-  <span>HavenCraft</span>
+    <img src="logo.png.png" alt="HavenCraft">
+    <span>HavenCraft</span>
   </div>
 
+  <!-- Search Bar -->
+<div class="search-container">
+
+    <!-- Left Search Icon -->
+    <div class="left-search-icon">
+        <img src="search.png.png" alt="Search" class="search-icon" id="searchBtn">
+    </div>
+
+    <!-- Input -->
+    <input type="text" id="searchInput" placeholder="Search handcrafted products...">
+
+    <!-- Right Icons -->
+    <div class="right-icons">
+        <img src="camera.png.png" alt="Camera" class="search-icon" id="cameraBtn">
+        <input type="file" id="imageUpload" accept="image/*" style="display:none">
+        <img src="mic.png.png" alt="Mic" class="search-icon mic-icon" id="voiceBtn">
+    </div>
+
+</div>
+
+  <!-- Navigation -->
   <nav class="nav">
     <ul class="nav-links">
       <li><a href="#hero">Home</a></li>
@@ -30,14 +52,15 @@
       <li><a href="#story">Our Story</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="cart.html" class="cart-btn">
-        Cart (<span id="cart-count">0</span>)
-      </a></li>
+      <li>
+        <a href="cart.html" class="cart-btn">
+          Cart (<span id="cart-count">0</span>)
+        </a>
+      </li>
     </ul>
   </nav>
 
 </header>
-
 
 <!-- ================= HERO SECTION ================= -->
 
