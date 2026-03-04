@@ -463,8 +463,14 @@ h1,h2,h3,h4{
     color:#aaa;
 }
 
+/* Hide menu icon by default (Desktop) */
+.menu-toggle{
+    display:none;
+}
+
 /* ================= RESPONSIVE ================= */
 
+/* Tablet */
 @media(max-width:992px){
 
     .hero-title{
@@ -477,14 +483,84 @@ h1,h2,h3,h4{
 
 }
 
+/* Mobile */
 @media(max-width:768px){
 
-    .nav-links{
-        display:none;
+    /* Header */
+    .header{
+        padding:15px 5%;
+        flex-wrap:wrap;
     }
 
+    /* Logo smaller */
+    .logo img{
+        height:45px;
+    }
+
+    .logo span{
+        font-size:22px;
+    }
+
+    /* Menu icon show */
+    .menu-toggle{
+        display:block;
+        font-size:28px;
+        cursor:pointer;
+    }
+
+    /* Hide normal nav */
+    .nav-links{
+        position:fixed;
+        top:0;
+        right:0;
+        transform:translateX(100%);
+        width:70%;
+        height:100vh;
+        background:#fff;
+        flex-direction:column;
+        padding-top:80px;
+        gap:25px;
+        transition:0.3s ease;
+        box-shadow:-5px 0 20px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.active{
+        transform:translateX(0);
+    }
+
+    .nav-links li{
+        text-align:center;
+    }
+
+    /* Search full width only mobile */
+    .search-container{
+        width:100%;
+        margin:10px 0;
+    }
+
+    /* Features column */
     .features{
         flex-direction:column;
+    }
+
+    /* Hero smaller */
+    .hero{
+        height:auto;
+        padding:120px 20px 60px;
+    }
+
+    .hero h1{
+        font-size:28px;
+        line-height:1.2;
+    }
+
+    .hero p{
+        font-size:14px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+        gap:15px;
     }
 
 }
