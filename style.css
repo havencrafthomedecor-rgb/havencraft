@@ -1,3 +1,8 @@
+/* ================= GLOBAL SETTINGS ================= */
+
+html{
+    scroll-behavior:smooth;
+}
 /* ===================================
    HAVENCRAFT LUXURY BRAND SYSTEM
    Premium UI / Glass / Animation
@@ -48,7 +53,7 @@ h1,h2,h3,h4{
     font-weight:700;
 }
 
-/* ================= HEADER ================= */
+/* ================= HEADER (DESKTOP ONLY) ================= */
 
 .header{
     position:fixed;
@@ -57,41 +62,59 @@ h1,h2,h3,h4{
     background:rgba(255,255,255,0.9);
     backdrop-filter:blur(15px);
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    padding:20px 1%;
+    padding:20px 3%;
     z-index:1000;
     box-shadow:var(--shadow-soft);
 }
 
+/* ================= LOGO (Laptop View) ================= */
+
 .logo{
-    display: flex;
-    align-items: center;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-right:50px;
+
+    text-decoration:none;  /* 🔥 underline remove */
+    color:inherit;         /* 🔥 blue link color remove */
 }
 
+/* Logo image */
 .logo img{
-    height: 65px;
-    width: auto;
-    transition: 0.3s ease;
+    height:75px;
+    width:auto;
+    transition:0.3s ease;
 }
 
 .logo img:hover{
-    transform: scale(1.05);
+    transform:scale(1.05);
 }
 
+/* HavenCraft Text */
 .logo span{
-    font-family: 'Playfair Display', serif;
-    font-size: 34px;
-    font-weight: 700;
-    background: linear-gradient(45deg, #a28218, #866941);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-family:'Playfair Display', serif;
+    font-size:46px;
+    font-weight:900;
+    letter-spacing:1px;
+
+    background:linear-gradient(45deg,#b48a1e,#8f6b32);
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+    text-shadow:0 3px 10px rgba(0,0,0,0.08);
+
+    position:relative;
+    top:-3px;
 }
 /* ===== FINAL SEARCH BAR DESIGN ===== */
 
 .search-container {
     position: relative;
-    width: 400px;
+    width: 350px;
 }
 
 .search-container input {
@@ -126,12 +149,12 @@ h1,h2,h3,h4{
 
 .right-icons {
     position: absolute;
-    right: 10px;
+    right: 8px;
     height: 25px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
-    gap: 1px;
+    gap: 2px;
 }
 
 /* ICON STYLE */
@@ -153,8 +176,8 @@ h1,h2,h3,h4{
 /* Bigger mic */
 
 .mic-icon {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
 }
 .nav-links{
     list-style:none;
@@ -185,11 +208,28 @@ h1,h2,h3,h4{
     width:100%;
 }
 
-.cart-btn{
-    background:var(--gradient-gold);
-    padding:8px 15px;
-    border-radius:30px;
-    color:#fff !important;
+.cart-icon{
+    position:relative;
+    font-size:24px;
+    margin:0 20px;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.cart-icon:hover{
+    transform:scale(1.1);
+}
+
+.cart-icon span{
+    position:absolute;
+    top:-8px;
+    right:-10px;
+    background:#b48a1e;
+    color:#fff;
+    font-size:11px;
+    padding:3px 7px;
+    border-radius:50%;
+    font-weight:600;
 }
 
 /* ===== HERO SECTION ===== */
@@ -467,6 +507,24 @@ h1,h2,h3,h4{
 .menu-toggle{
     display:none;
 }
+
+/* ================= LOGIN BUTTON STYLE ================= */
+
+.signup-btn{
+    background:linear-gradient(45deg,#b48a1e,#8f6b32);
+    color:#fff !important;
+    padding:8px 18px;
+    border-radius:25px;
+    font-weight:600;
+    transition:0.3s ease;
+}
+
+.signup-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+
 
 /* ================= RESPONSIVE ================= */
 
