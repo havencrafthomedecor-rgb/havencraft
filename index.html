@@ -19,46 +19,45 @@
 <header class="header">
 
   <!-- Logo -->
-  <div class="logo">
-    <img src="logo.png.png" alt="HavenCraft">
-    <span>HavenCraft</span>
-  </div>
+  <a href="#hero" class="logo">
+  <img src="logo.png.png" alt="HavenCraft">
+  <span>HavenCraft</span>
+</a>
 
   <div class="menu-toggle" id="menuToggle">☰</div>
 
   <!-- Search Bar -->
-<div class="search-container">
+  <div class="search-container">
 
-    <!-- Left Search Icon -->
-    <div class="left-search-icon">
-        <img src="search.png.png" alt="Search" class="search-icon" id="searchBtn">
-    </div>
+      <div class="left-search-icon">
+          <img src="search.png.png" alt="Search" class="search-icon" id="searchBtn">
+      </div>
 
-    <!-- Input -->
-    <input type="text" id="searchInput" placeholder="Search handcrafted products...">
+      <input type="text" id="searchInput" placeholder="Search handcrafted products...">
 
-    <!-- Right Icons -->
-    <div class="right-icons">
-        <img src="camera.png.png" alt="Camera" class="search-icon" id="cameraBtn">
-        <input type="file" id="imageUpload" accept="image/*" style="display:none">
-        <img src="mic.png.png" alt="Mic" class="search-icon mic-icon" id="voiceBtn">
-    </div>
+      <div class="right-icons">
+          <img src="camera.png.png" alt="Camera" class="search-icon" id="cameraBtn">
+          <input type="file" id="imageUpload" accept="image/*" style="display:none">
+          <img src="mic.png.png" alt="Mic" class="search-icon mic-icon" id="voiceBtn">
+      </div>
 
-</div>
+  </div>
 
+  <!-- 🛒 Cart Icon (Search এর পরে, Nav এর আগে) -->
+  <div class="cart-icon" onclick="window.location.href='cart.html'">
+      🛒
+      <span id="cart-count">0</span>
+  </div>
   <!-- Navigation -->
   <nav class="nav">
     <ul class="nav-links" id="navLinks">
-      <li><a href="#hero">Home</a></li>
+
       <li><a href="#collections">Collections</a></li>
       <li><a href="#story">Our Story</a></li>
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li>
-        <a href="cart.html" class="cart-btn">
-          Cart (<span id="cart-count">0</span>)
-        </a>
-      </li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="signup.html" class="signup-btn">Sign Up</a></li>
     </ul>
   </nav>
 
@@ -66,7 +65,7 @@
 
 <!-- ================= HERO SECTION ================= -->
 
-<section class="hero">
+<section id="hero" class="hero">
   <div class="hero-content">
     <h1>
       Crafted With Love <br>
