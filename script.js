@@ -326,7 +326,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-     /* ===============================
+    /* ===============================
        MOBILE MENU TOGGLE
     ================================ */
 
@@ -338,5 +338,27 @@ document.addEventListener("DOMContentLoaded", function () {
             navLinks.classList.toggle("active");
         });
     }
+
+
+    /* ===============================
+       HIDE LOGO ON SCROLL (MOBILE ONLY)
+    ================================ */
+
+    const header = document.querySelector(".header");
+
+    window.addEventListener("scroll", function () {
+
+        if (window.innerWidth <= 768) {
+
+            if (window.scrollY > 50) {
+                header.classList.add("hide-logo");
+            } 
+            else {
+                header.classList.remove("hide-logo");
+            }
+
+        }
+
+    });
 
 });
