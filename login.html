@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login - HavenCraft</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family: Arial;
+  background: linear-gradient(135deg,#b48a1e,#8f6b32);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.card{
+  background:#fff;
+  width:400px;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+.tabs{
+  display:flex;
+  margin-bottom:20px;
+  border-bottom:2px solid #eee;
+}
+
+.tab{
+  flex:1;
+  text-align:center;
+  padding:10px;
+  cursor:pointer;
+  font-weight:bold;
+  color:#777;
+}
+
+.tab.active{
+  color:#b48a1e;
+  border-bottom:3px solid #b48a1e;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+.phone-box{
+  display:flex;
+  align-items:center;
+  margin:10px 0;
+}
+
+.prefix{
+  background:#f2f2f2;
+  width:75px;
+  height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid #ccc;
+  border-right:none;
+  border-radius:6px 0 0 6px;
+  font-weight:600;
+}
+
+.phone-box input{
+  height:48px;
+  flex:1;
+  padding:0 12px;
+  border:1px solid #ccc;
+  border-left:none;
+  border-radius:0 6px 6px 0;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  background:#b48a1e;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+button:hover{
+  background:#8f6b32;
+}
+
+.link{
+  text-align:right;
+  font-size:14px;
+}
+
+.link a{
+  text-decoration:none;
+  color:#6a1b9a;
+}
+
+#phoneForm, #forgotForm{
+  display:none;
+}
+#forgotForm a{
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="tabs">
+  <div class="tab active" onclick="showEmail()">Email</div>
+  <div class="tab" onclick="showPhone()">Phone Number</div>
+</div>
+
+<!-- EMAIL LOGIN -->
+<div id="emailForm">
+  <input type="email" id="email" placeholder="Enter Email">
+  <input type="password" id="password" placeholder="Enter Password">
+
+  <div class="link">
+    <a href="#" onclick="showForgot()">Forgot password?</a>
+  </div>
+
+  <button onclick="loginEmail()">LOGIN</button>
+</div>
+
+<!-- PHONE LOGIN -->
+<div id="phoneForm">
+  <div class="phone-box">
+    <div class="prefix">BD +88</div>
+    <input type="text" id="phone" placeholder="01XXXXXXXXX">
+  </div>
+
+  <button onclick="sendPhoneOTP()">Send Code via SMS</button>
+
+  <div id="otpSection" style="display:none;">
+    <input type="text" id="otp" placeholder="Enter OTP">
+    <button onclick="verifyPhoneOTP()">Verify & Login</button>
+  </div>
+
+  <div id="recaptcha-container" style="margin-top:10px;"></div>
+</div>
+
+<!-- FORGOT PASSWORD -->
+<div id="forgotForm">
+  <input type="email" id="resetEmail" placeholder="Enter your email">
+  <button onclick="sendEmailOTP()">Send OTP</button>
+
+  <div id="emailOtpArea" style="display:none;">
+    <input type="text" id="otpInput" placeholder="Enter OTP">
+    <button onclick="verifyEmailOTP()">Verify OTP</button>
+    <p id="timer"></p>
+  </div>
+
+  <div id="newPassArea" style="display:none;">
+    <input type="password" id="newPassword" placeholder="New Password">
+    <button onclick="resetUserPassword()">Reset Password</button>
+  </div>
+
+  <div style="margin-top:10px;">
+    <a href="#" onclick="backToLogin()">← Back</a>
+  </div>
+</div>
+
+</div>
+
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { 
+  getAuth, 
+  signInWithEmailAndPassword,
+  signInWithPhoneNumber,
+  RecaptchaVerifier
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_AUTH_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+  appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Tab System
+window.showEmail = function(){
+  emailForm.style.display="block";
+  phoneForm.style.display="none";
+  forgotForm.style.display="none";
+  document.querySelectorAll(".tab")[0].classList.add("active");
+  document.querySelectorAll(".tab")[1].classList.remove("active");
+}
+
+window.showPhone = function(){
+  emailForm.style.display="none";
+  phoneForm.style.display="block";
+  forgotForm.style.display="none";
+  document.querySelectorAll(".tab")[1].classList.add("active");
+  document.querySelectorAll(".tab")[0].classList.remove("active");
+}
+
+window.showForgot = function(){
+  emailForm.style.display="none";
+  phoneForm.style.display="none";
+  forgotForm.style.display="block";
+}
+
+window.backToLogin = function(){
+  forgotForm.style.display="none";
+  emailForm.style.display="block";
+}
+
+// Email Login
+window.loginEmail = function(){
+  signInWithEmailAndPassword(auth,email.value,password.value)
+  .then(()=> window.location.href="index.html")
+  .catch(e=> alert(e.message));
+}
+
+// Phone Login
+window.recaptchaVerifier = new RecaptchaVerifier(auth,'recaptcha-container',{ size:'normal' });
+
+window.sendPhoneOTP = function(){
+  const fullPhone="+880"+phone.value;
+  signInWithPhoneNumber(auth,fullPhone,window.recaptchaVerifier)
+  .then(result=>{
+    window.confirmationResult=result;
+    otpSection.style.display="block";
+  })
+  .catch(e=> alert(e.message));
+}
+
+window.verifyPhoneOTP = function(){
+  confirmationResult.confirm(otp.value)
+  .then(()=> window.location.href="index.html")
+  .catch(()=> alert("Invalid OTP"));
+}
+</script>
+
+<!-- EMAIL OTP BACKEND -->
+<script>
+async function sendEmailOTP(){
+  const res = await fetch("http://localhost:5000/send-otp",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify({ email: resetEmail.value })
+  });
+
+  if(res.ok){
+    alert("OTP Sent!");
+    emailOtpArea.style.display="block";
+    startTimer();
+  } else {
+    alert("Error sending OTP");
+  }
+}
+
+async function verifyEmailOTP(){
+  const res = await fetch("http://localhost:5000/verify-otp",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify({ email: resetEmail.value, otp: otpInput.value })
+  });
+
+  if(res.ok){
+    alert("OTP Verified!");
+    newPassArea.style.display="block";
+  } else {
+    alert("Invalid OTP");
+  }
+}
+
+async function resetUserPassword(){
+  const res = await fetch("http://localhost:5000/reset-password",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify({ email: resetEmail.value, newPassword: newPassword.value })
+  });
+
+  if(res.ok){
+    alert("Password Updated!");
+    location.reload();
+  } else {
+    alert("Error updating password");
+  }
+}
+
+function startTimer(){
+  let time=180;
+  const timer=document.getElementById("timer");
+
+  const interval=setInterval(()=>{
+    if(time<=0){
+      clearInterval(interval);
+      timer.innerText="OTP Expired";
+    } else {
+      timer.innerText="Time left: "+time+" seconds";
+      time--;
+    }
+  },1000);
+}
+</script>
+
+</body>
+</html>
