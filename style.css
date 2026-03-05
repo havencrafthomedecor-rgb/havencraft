@@ -546,8 +546,19 @@ h1,h2,h3,h4{
 
     /* Header */
     .header{
-        padding:15px 5%;
+        padding:10px 5%;
         flex-wrap:wrap;
+        transition:0.3s;
+    }
+
+    /* Top logo section */
+    .logo{
+        width:100%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        margin-bottom:8px;
+        transition:0.3s;
     }
 
     /* Logo smaller */
@@ -562,7 +573,7 @@ h1,h2,h3,h4{
     /* Menu icon show */
     .menu-toggle{
         display:block;
-        font-size:28px;
+        font-size:26px;
         cursor:pointer;
     }
 
@@ -592,8 +603,47 @@ h1,h2,h3,h4{
 
     /* Search full width only mobile */
     .search-container{
+    flex:1;
+    margin:0 5px;
+    }
+
+    /* Header row (menu | search | cart) */
+    .header-tools{
         width:100%;
-        margin:10px 0;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:10px;
+    }
+
+    /* Fix mobile search layout */
+.header-tools .search-container{
+    flex:1;
+    margin:0 5px;
+}
+
+.header-tools .search-container input{
+    height:36px;
+    font-size:13px;
+}
+
+.header-tools .search-icon{
+    width:16px;
+    height:16px;
+}
+
+.header-tools .cart-btn{
+    font-size:14px;
+}
+
+    /* When scrolled hide logo */
+    .header.hide-logo .logo{
+        display:none;
+    }
+
+    /* Header becomes thin */
+    .header.hide-logo{
+        padding:8px 5%;
     }
 
     /* Features column */
@@ -604,11 +654,11 @@ h1,h2,h3,h4{
     /* Hero smaller */
     .hero{
         height:auto;
-        padding:120px 20px 60px;
+        padding:90px 20px 50px;
     }
 
     .hero h1{
-        font-size:28px;
+        font-size:26px;
         line-height:1.2;
     }
 
